@@ -2,7 +2,7 @@ from airflow import DAG
 import pendulum
 import datetime
 from airflow.providers.standard.operators.python import PythonOperator
-from common.common_func import get_sftp
+from common.common_func import get_stfp
 
 with DAG(
     dag_id = "dags_python_import_func",
@@ -12,6 +12,6 @@ with DAG(
 ) as dag:
     
     task_get_sftp = PythonOperator(
-        task_id = "task_get_sftp"
+        task_id = "task_get_sftp",
         python_callable= get_stfp
     )
