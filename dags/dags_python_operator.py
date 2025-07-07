@@ -18,7 +18,7 @@ with DAG(
     
     py_t1 = PythonOperator(
         task_id='py_t1',
-        python_callable=select_fruit
+        python_callable=select_fruit  #어떤 함수를 실행시킬 것인지를 호출하는 함수
     )
 
     py_t1
