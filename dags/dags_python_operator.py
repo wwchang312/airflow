@@ -13,8 +13,7 @@ with DAG(
     def select_fruit():
         fruit = ['APPLE','BANANA','ORANGE','AVOCADO'] #List 생성
         rand_int = random.randint(0,3)  #랜덤으로 숫자 추출
-        print(fruit[rand_int])
-
+        return(fruit[rand_int]) #값 Return
     
     py_t1 = PythonOperator(
         task_id='py_t1',
