@@ -14,7 +14,7 @@ with DAG(
     bash_task_2=BashOperator(
         task_id='bash_task_2',
         env= {'START_DATE':'{{(data_interval_start.in_timezone("Asia/Seoul") - macros.dateutil.relativedelta.relativedelta(weeks=2,weekday=0)) | ds }}',
-              'END_DATE':'{{(data_interval_end.in_timezone("Asia/Seoul") - macros.dateutil.relativedelta.relativedelta(weeks=2,weekday=5)) | ds }}'
+              'END_DATE':'{{(data_interval_end.in_timezone("Asia/Seoul") - macros.dateutil.relativedelta.relativedelta(weeks=2,weekday=macros.dateutil.relativedelta.weekday(5)(-1))) | ds }}'
         },
         bash_command= 'echo "START_DATE: $START_DATE" && echo "END_DATE: $END_DATE"'
     )
