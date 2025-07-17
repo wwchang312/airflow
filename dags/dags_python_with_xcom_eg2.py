@@ -26,7 +26,7 @@ with DAG(
         print('함수 입력값으로 받은 값 : ' + status)
     
 
-    xcom_pull2(xcom_push_result())
+    xcom_pull_2(xcom_push_result())
     xcom_push_result() >> xcom_pull_1()
     
     
