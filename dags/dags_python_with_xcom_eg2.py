@@ -4,7 +4,7 @@ import datetime
 from airflow.decorators import task
 
 with DAG(
-    dag_id='dags_python_with_xcom_eg1',
+    dag_id='dags_python_with_xcom_eg2',
     schedule= '0 10 * * *',
     start_date= pendulum.datetime(2025,7,1),
     catchup=False
