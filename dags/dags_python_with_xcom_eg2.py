@@ -27,6 +27,6 @@ with DAG(
     
 
     xcom_pull2(xcom_push_result())
-    xcom_push_result() >> xcom_pull1()
+    xcom_push_result() >> xcom_pull_1()
     
     
