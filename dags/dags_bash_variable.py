@@ -14,7 +14,7 @@ with DAG(
 
     bash_var_1 = BashOperator(
         task_id = 'bash_var_1',
-        bash_command=f"echo variable:{{var_value}}"
+        bash_command=f"echo variable:{var_value}"
     )
 
     bash_var_2=BashOperator(
