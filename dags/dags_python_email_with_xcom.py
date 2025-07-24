@@ -17,11 +17,11 @@ with DAG (
 
 
     send_email=EmailOperator(
-        task_id='send_eamil',
+        task_id='send_email',
         to='wanw95@naver.com',
         subject = '{{data_interval_end.in_timezone("Asia/Seoul") | ds}} some logic 처리결과',
         html_content='{{date_interval_end.in_timezone("Asia/Seoul" | ds)}} 처리결과 <br> \ {{ti.xcom_pull(task_ids="something_task")}} 했습니다. <br>'
     )
 
 
-    some_logic() >> send_eamil
+    some_logic() >> send_email
