@@ -14,7 +14,7 @@ with DAG(
     def select_random():
         import random
         item_list=['A','B','C']
-        selected_item=select_random(item_list)
+        selected_item=random.choice(item_list)
 
         if selected_item == 'A':
             return 'task_a'
