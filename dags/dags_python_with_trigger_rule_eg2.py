@@ -11,7 +11,7 @@ with DAG(
     catchup=False
 ) as dag:
     
-    @task(task_id='branching')
+    @task.branch(task_id='branching')
     def random_branch():
         import random
         item_lst=['A','B','C']
@@ -37,14 +37,10 @@ with DAG(
     def task_c():
         print('C 정상처리')
 
-    @task(task_id='task_d')
+    @task(task_id='task_d',trigger_rule='none_skipped')
     def task_d():
         print('D 정상처리')
 
-    a = task_a
-    b = task_b()
-    c = task_c()
-    d = task_d()
-    d.trigger_rule="none_skipped"
 
-    random_branch() >> [a,b,c] >> d
+    random_branch() >> [task_a,task_b(),task_c()] >> task_d()
+
