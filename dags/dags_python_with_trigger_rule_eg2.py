@@ -26,35 +26,25 @@ with DAG(
         
     task_a = BashOperator(
         task_id = 'task_a',
-        bash_command = 'echo upstream_1'
+        bash_command = 'echo A 정상처리'
     )
 
-
-    def suc_yn():
-        print('정상처리')
-
-    task_b=PythonOperator(
-        task_id='task_b',
-        python_callable=suc_yn
-    )
-
-    task_c=PythonOperator(
-        task_id='task_c',
-        python_callable=suc_yn
-    )
-
-    @task(task_id='task_d',trigger_rule='none_skipped')
-    def task_d():
-        print('정상 처리')
-
-    random_branch() >> [task_a,task_b,task_c] >> task_d()
-
-'''
     @task(task_id='task_b')
     def task_b():
-        print('정상 처리')
+        print('B 정상처리')
     
     @task(task_id='task_c')
     def task_c():
-        print('정상 처리')
-'''
+        print('C 정상처리')
+
+    @task(task_id='task_d')
+    def task_d():
+        print('D 정상처리')
+
+    a = task_a
+    b = task_b()
+    c = task_c()
+    d = task_d()
+    d.trigger_rule="none_skipped"
+
+    random_branch() >> [a,b,c] >> d
