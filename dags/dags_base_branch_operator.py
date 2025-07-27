@@ -20,6 +20,8 @@ with DAG (
                 return 'task_a'
             elif selected_item in ['B','C']:
                 return ['task_b','task_c']
+            
+    custom_branch_operator = CustomBranchOperator(task_id='python_branch_task')
     
     def common_func (**kwargs):
         print(kwargs['selected'])
@@ -41,5 +43,5 @@ with DAG (
     )
 
 
-    CustomBranchOperator >> [task_a,task_b,task_c]
+    custom_branch_operator >> [task_a,task_b,task_c]
 
