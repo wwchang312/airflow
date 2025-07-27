@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.decorators import task
 from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.standard.operators.python import PythonOperator
 import pendulum
 
 with DAG(
@@ -28,6 +29,21 @@ with DAG(
         bash_command = 'echo upstream_1'
     )
 
+
+    def suc_yn():
+        print('정상처리')
+
+    task_b=PythonOperator(
+        task_id='task_b',
+        python_callable=suc_yn
+    )
+
+    task_c=PythonOperator(
+        task_id='task_c',
+        python_callable=suc_yn
+    )
+
+'''
     @task(task_id='task_b')
     def task_b():
         print('정상 처리')
@@ -35,9 +51,9 @@ with DAG(
     @task(task_id='task_c')
     def task_c():
         print('정상 처리')
-
+'''
     @task(task_id='task_d',trigger_rule='none_skipped')
     def task_d():
         print('정상 처리')
 
-    random_branch() >> [task_a,task_b(),task_c()] >> task_d()
+    random_branch() >> [task_a,task_b,task_c] >> task_d()
