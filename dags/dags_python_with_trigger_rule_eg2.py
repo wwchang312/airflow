@@ -47,6 +47,8 @@ with DAG(
     def task_d():
         print('정상 처리')
 
+    random_branch() >> [task_a,task_b,task_c] >> task_d()
+
 '''
     @task(task_id='task_b')
     def task_b():
@@ -56,6 +58,3 @@ with DAG(
     def task_c():
         print('정상 처리')
 '''
-
-
-    random_branch() >> [task_a,task_b,task_c] >> task_d()
