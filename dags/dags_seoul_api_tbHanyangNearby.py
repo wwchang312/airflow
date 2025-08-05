@@ -12,7 +12,7 @@ with DAG(
     tb_HanyangNearby_info = SeoulApiToCsvOperator(
         task_id='tb_HanyangNearby_info',
         dataset_nm='tbHanyangNearby',
-        path='/opt/airflow/files/tbHanyangNearby/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}', #
+        path='/opt/airflow/files/tbHanyangNearby/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}',
         file_name='tbHanyangNearby.csv'
     )
 

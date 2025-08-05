@@ -16,7 +16,7 @@ with DAG(
         file_name='TbCorona19CountStatus.csv'
     )
 
-    '''서울시 코로나19 확진자 발생동향'''
+    '''서울시 코로나19 백신 예방접종 동향'''
     tb_corona19_vaccine_stat_new =SeoulApiToCsvOperator(
         task_id='tb_corona19_vaccine_stat_new',
         dataset_nm='tvCorona19VaccinestatNew',
