@@ -19,8 +19,8 @@ with DAG(
                             else
                                 exit 1
                             fi''', #FILE변수 선언 후 -> 해당 경로에 파일이 있는지 여부를 테스트하는 테스트 플래그(-f) 조건절 마무리는 fi로
-        poke_interval=30, #30초
-        timeout=60*2,
+        poke_interval=10, #30초
+        timeout=60*3,
         mode='poke',
         soft_fail=False
     )
