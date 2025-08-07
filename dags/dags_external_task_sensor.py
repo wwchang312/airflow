@@ -6,7 +6,7 @@ from airflow.providers.standard.sensors.external_task import ExternalTaskSensor
 
 with DAG (
     dag_id ='dags_external_task_sensor',
-    schedule=None
+    schedule= None,
     start_date=pendulum.datetime(2025,8,7,tz="Asia/Seoul"),
     catchup=False
 ) as dag:
