@@ -7,7 +7,7 @@ from airflow.sdk import DAG
 with DAG(
     dag_id='dags_branch_python_operator',
     start_date=pendulum.datetime(2023,4,1, tz='Asia/Seoul'), 
-    schedule='0 1 * * *',
+    schedule='0 7 * * *',
     catchup=False
 ) as dag:
     def select_random():
