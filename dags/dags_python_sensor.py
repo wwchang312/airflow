@@ -20,7 +20,7 @@ with DAG(
         response = requests.get(url)  
 
         contents = json.loads(response.text) #request로 읽어온 것을 약속된 형태의 문자열로 Decode
-        key_nm= list(contents.key())[0]
+        key_nm= list(contents.keys())[0]
         row_data=contents.get(key_nm).get('row')
         last_dt = row_data[0].get(base_dt_col)
         last_date =last_dt[:10]
@@ -38,8 +38,9 @@ with DAG(
         else:
             print(f'Update 미완료(배치 날짜: {today_ymd}/ Last API 날짜 {last_date})')
             return False
-        print(contents)
-        
+        print(key_nm)
+        print(row_data)
+        print(last_dt)
 
     sensor_task=PythonSensor(
         task_id='sensor_task',
