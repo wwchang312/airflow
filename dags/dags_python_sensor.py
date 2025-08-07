@@ -11,15 +11,15 @@ with DAG(
     start_date=pendulum.datetime(2025,8,1,tz="Asia/Seoul"),
     catchup=False
 ) as dag:
-    def check_api_update(http_conn_id,endpoint,base_dt_col,**kwargs):
+    def check_api_update(http_conn_id,endpoint,base_dt_col,**kwargs):       #api 호출 함수
         import requests
         import json
-        from dateutil import relativedelta
-        connection= BaseHook.get_connection(http_conn_id)
-        url=f'http://{connection.host}:{connection.port}/{endpoint}/1/100'
-        response = requests.get(url)
+        from dateutil import relativedelta                                
+        connection= BaseHook.get_connection(http_conn_id)                   #ConnectionID Hook으로 연결
+        url=f'http://{connection.host}:{connection.port}/{endpoint}/1/100' 
+        response = requests.get(url)  
 
-        contents = json.load(response.text)
+        contents = json.loads(response.text) #request로 읽어온 것을 약속된 형태의 문자열로 Decode
         key_nm= list(contents.key())[0]
         row_data=contents.get(key_nm).get('row')
         last_dt = row_data[0].get(base_dt_col)
@@ -38,6 +38,7 @@ with DAG(
         else:
             print(f'Update 미완료(배치 날짜: {today_ymd}/ Last API 날짜 {last_date})')
             return False
+        print(contents)
         
 
     sensor_task=PythonSensor(
