@@ -38,9 +38,6 @@ with DAG(
         else:
             print(f'Update 미완료(배치 날짜: {today_ymd}/ Last API 날짜 {last_date})')
             return False
-        print(key_nm)
-        print(row_data)
-        print(last_dt)
 
     sensor_task=PythonSensor(
         task_id='sensor_task',
