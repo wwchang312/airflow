@@ -4,6 +4,7 @@ from airflow.sdk import DAG, Asset
 
 
 asset_dags_dataset_producer_1 = Asset("dags_dataset_producer_1")
+
 asset_dags_dataset_producer_2 = Asset("dags_dataset_producer_2")
 
 with DAG(
